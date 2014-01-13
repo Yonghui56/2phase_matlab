@@ -265,7 +265,6 @@ for ti = 1 : steps;
     RHS2=Vector_Combine(RHS2_U,RHS2_D);
     RHS=RHS1+RHS2; 
     %Imposing the Dirichlet boundary condition
-    % one loop for both P and X           
     for ib = 1 : 2*nbcn
         idx = index(ib);
         % b(i) -= A(i,ii)*u_bar
@@ -282,18 +281,14 @@ for ti = 1 : steps;
         % A(ii,ii) <- xii
         LHS(idx,idx) = x_i_i;
     end
-    %translate the sparse matrix to full matrix just for checking the rank
-    %and the det
+    %%%%%%full of the sparse matrix%%%%%%%%%%%%
     LHS_dense=full(LHS);
     LHS_dense11=full(LHS11);
     LHS_dense12=full(LHS12);
     LHS_dense21=full(LHS21);
     LHS_dense22=full(LHS22);
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    %calculate the sparse matrix %%%%%%%%%%%%%%
+    
     Res_1=Residual_Calculation(LHS,U_pre,RHS);
-    str = ['time step',num2str(ti)];
-    disp(str);
 %     for ib=1:nbcn
 %         idx=index1(ib);
 %         RHS_bar2=LHS(nn+1:2*nn,idx+nn) * bc_nodes_value_X(ib);
@@ -319,4 +314,6 @@ for ti = 1 : steps;
 %     U1_pre=Matrix_Swap(U_pre,1,nn);
 %     %Calculate residual  
 %     %Res_1=Residual_Calculation(LHS,U_pre,RHS);
+    str = ['time step',num2str(ti)];
+    disp(str);
 end
