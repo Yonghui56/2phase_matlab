@@ -19,6 +19,7 @@ function[PC] = CapillaryP(S)
 global S_gr;
 global S_lr;
 global eps;
+
 % Implement on 8th Jan
 %the low point used the slope of the point (Sgr)
 % if S<=1-S_lr && S>=S_gr
